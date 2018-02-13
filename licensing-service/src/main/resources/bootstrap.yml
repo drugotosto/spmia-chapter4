@@ -1,3 +1,7 @@
+# name
+# Rappresenta l'APPLICATION ID ovvero nome logico del gruppo di istanze di un certo microservizio che verrà usato in fase di registrazione su Eureka
+# Il valore che invece verrà assegnato a INSTANCE ID sarà generato casualmente
+
 spring:
   application:
     name: licensingservice

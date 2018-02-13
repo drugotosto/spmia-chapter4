@@ -1,3 +1,23 @@
+# File di configurazione contenente le informazioni che il microservizio utilizzerà per apprendere "COME" e "DOVE"
+# registrarsi facendo uso dell'Eureka Service
+
+# preferIpAddress
+# In questo modo si decide di registrare l'indirizzo IP del microservizio piuttosto che l'hostname del server (impostazione di default)
+# Dal momento che si utilizzano i container Docker si è vincolati a registrarsi con l'IP piuttosto che con gli hostnames.
+
+# registerWithEureka
+# Aziona la vera e propria registrazione del microservizio con Eureka
+
+# fetchRegistry
+# Serve per fare in modo che il microServizio utilizzi una copia in locale del "registry" gestito da Eureka contenente i diversi IP associati ai vari microservizi richiesti in passato in maniera tale da evitare di richiamare L'Eureka service discovery ogni volta che è necessario
+# Ogni 30 secondi ogni microservizio client ricontatterà Eureka per aggiornare i valori del suo registry locale.
+
+# defaultZone
+# Contiene una lista di URL dei diversi servizi Eureka (che fanno parte di un Eureka cluster) che il client microservice potrà utilizzare per eseguire il discovery
+# L'utilizzo di diversi nodi che fanno parte dell'Eureka cluster sever per garantire "alta disponibilità del servizio di discovery"
+# Il solo settaggio di diversi URL non è l'unica vincolo necessario per garantire "alta disponibilità" occorre infatti configurare gli Eureka services in maniera tale che possano comunicare tra loro e condividere le informazioni dei diversi registri
+# Nel caso specifico è stato utilizzato una sola istanza di Eureka Service
+
 eureka:
   instance:
     preferIpAddress: true

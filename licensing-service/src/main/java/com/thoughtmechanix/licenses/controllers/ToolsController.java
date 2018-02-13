@@ -11,9 +11,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value="v1/tools")
 public class ToolsController {
+
     @Autowired
     private DiscoveryService discoveryService;
 
+    /*
+        Metodo che per ogni istanza di microservizio registrata con Eureka restituisce il nome del microservizio stesso e relative info su indirizzo IP e porta del server associata
+    */
     @RequestMapping(value="/eureka/services",method = RequestMethod.GET)
     public List<String> getEurekaServices() {
 

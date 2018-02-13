@@ -27,6 +27,7 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- Tells your maven build to include the Eureka libraries  (which will include Ribbon) -->
   <dependencies>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -39,7 +40,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>com.thoughtmechanix.eurekasvr.EurekaServerApplication</start-class>
     <java.version>1.8</java.version>
-    <docker.image.name>johncarnell/tmx-eurekasvr</docker.image.name>
+    <docker.image.name>ferrero/tmx-eurekasvr</docker.image.name>
     <docker.image.tag>chapter4</docker.image.tag>
   </properties>
 
@@ -72,10 +73,12 @@
          <plugin>
              <groupId>com.spotify</groupId>
              <artifactId>docker-maven-plugin</artifactId>
-             <version>0.4.10</version>
+             <version>0.4.13</version>
              <configuration>
                  <imageName>${docker.image.name}:${docker.image.tag}</imageName>
                  <dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
+                 <dockerHost>https://localhost:2376</dockerHost>
+                 <dockerCertPath>/Users/drugo/.docker/machine/machines/default</dockerCertPath>
                  <resources>
                      <resource>
                          <targetPath>/</targetPath>
@@ -90,6 +93,7 @@
              <artifactId>spring-boot-maven-plugin</artifactId>
          </plugin>
      </plugins>
+     <finalName>eurekasvr-0.0.1</finalName>
  </build>
 
 </project>

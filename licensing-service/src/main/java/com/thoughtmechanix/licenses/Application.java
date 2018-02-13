@@ -11,17 +11,24 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
+// Tale annotazione permette di utilizzare il DiscoveryClient e le Ribbon libraries
 @EnableDiscoveryClient
+// Tale annotazione serve per abilitare l'utilizzo dei FeignClient e relativa annotazione da utilizzare sopra alle interfacce
 @EnableFeignClients
 public class Application {
 
-  @LoadBalanced
-  @Bean
-  public RestTemplate getRestTemplate(){
-      return new RestTemplate();
+    /*
+        Tale annotazione (in abbinamento con il costruttore richiamato all'interno del metodo) serve per
+        essere in grado di utilizzare la versione della classe RestTemplate Ribbon-aware
+    */
+    @LoadBalanced
+    @Bean
+    public RestTemplate getRestTemplate(){
+        // Una volta richiamato il costruttore della classe "normale" RestTemplate tramite l'annotazione verrà trasformata in una versione Ribbon-aware
+        return new RestTemplate();
   }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
   }
 }

@@ -36,14 +36,6 @@ public class LicenseServiceController {
         return licenseService.getLicense(organizationId, licenseId, "");
     }
 
-    @RequestMapping(value="/{licenseId}/{clientType}",method = RequestMethod.GET)
-    public License getLicensesWithClient( @PathVariable("organizationId") String organizationId,
-                                          @PathVariable("licenseId") String licenseId,
-                                          @PathVariable("clientType") String clientType) {
-
-        return licenseService.getLicense(organizationId,licenseId, clientType);
-    }
-
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
     public void updateLicenses( @PathVariable("licenseId") String licenseId, @RequestBody License license) {
         licenseService.updateLicense(license);
@@ -58,5 +50,13 @@ public class LicenseServiceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteLicenses( @PathVariable("licenseId") String licenseId, @RequestBody License license) {
          licenseService.deleteLicense(license);
+    }
+
+    @RequestMapping(value="/{licenseId}/{clientType}",method = RequestMethod.GET)
+    public License getLicensesWithClient( @PathVariable("organizationId") String organizationId,
+                                          @PathVariable("licenseId") String licenseId,
+                                          @PathVariable("clientType") String clientType) {
+
+        return licenseService.getLicense(organizationId,licenseId, clientType);
     }
 }

@@ -19,6 +19,7 @@ public class OrganizationServiceController {
     private OrganizationService orgService;
 
 
+    // Endpoint che verrà richimato dal microservizio "licensingService" per recuperare le informazioni della compagnia
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
     public Organization getOrganization( @PathVariable("organizationId") String organizationId) {
         return orgService.getOrg(organizationId);

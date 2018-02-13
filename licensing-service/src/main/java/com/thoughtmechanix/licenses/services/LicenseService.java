@@ -22,7 +22,6 @@ public class LicenseService {
     @Autowired
     ServiceConfig config;
 
-
     @Autowired
     OrganizationFeignClient organizationFeignClient;
 
