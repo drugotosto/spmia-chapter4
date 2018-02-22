@@ -1,28 +1,28 @@
 package com.thoughtmechanix.licenses.model;
 
 public class Organization {
-    String id;
-    String name;
+    String organizationId;
+    String organizationName;
     String contactName;
     String contactEmail;
     String contactPhone;
 
 
-    public String getId() {
-        return id;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrganizationId(String id) {
+        this.organizationId = id;
     }
 
-    public String getName() {
-        return name;
+    public String getOrganizationName() {
+        return organizationName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrganizationName(String name) {
+        this.organizationName = name;
     }
 
     public String getContactName() {

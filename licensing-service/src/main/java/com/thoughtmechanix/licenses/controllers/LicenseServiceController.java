@@ -3,19 +3,16 @@ package com.thoughtmechanix.licenses.controllers;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.services.LicenseService;
 import com.thoughtmechanix.licenses.config.ServiceConfig;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value="v1/organizations/{organizationId}/licenses")
+@CrossOrigin
 public class LicenseServiceController {
     @Autowired
     private LicenseService licenseService;
@@ -42,8 +39,8 @@ public class LicenseServiceController {
     }
 
     @RequestMapping(value="/",method = RequestMethod.POST)
-    public void saveLicenses(@RequestBody License license) {
-        licenseService.saveLicense(license);
+    public JSONObject saveLicenses(@RequestBody License license) {
+        return licenseService.saveLicense(license);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.DELETE)

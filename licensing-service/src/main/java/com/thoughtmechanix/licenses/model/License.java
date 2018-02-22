@@ -17,18 +17,6 @@ public class License{
   @Column(name = "organization_id", nullable = false)
   private String organizationId;
 
-  @Transient
-  private String organizationName ="";
-
-  @Transient
-  private String contactName ="";
-
-  @Transient
-  private String contactPhone ="";
-
-  @Transient
-  private String contactEmail ="";
-
   @Column(name = "product_name", nullable = false)
   private String productName;
 
@@ -43,6 +31,18 @@ public class License{
 
   @Column(name="comment")
   private String comment;
+
+  @Transient
+  private String organizationName ="";
+
+  @Transient
+  private String contactName ="";
+
+  @Transient
+  private String contactPhone ="";
+
+  @Transient
+  private String contactEmail ="";
 
 
   public Integer getLicenseMax() {

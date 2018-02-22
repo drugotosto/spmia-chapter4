@@ -3,21 +3,26 @@ package com.thoughtmechanix.organization.controllers;
 
 import com.thoughtmechanix.organization.model.Organization;
 import com.thoughtmechanix.organization.services.OrganizationService;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value="v1/organizations")
+@CrossOrigin()
 public class OrganizationServiceController {
     @Autowired
     private OrganizationService orgService;
 
+
+
+    @RequestMapping(value = "/" , method = RequestMethod.GET)
+    public List<Organization> getAllOrganizations(){
+        return orgService.getAllOrgs();
+    }
 
     // Endpoint che verrà richimato dal microservizio "licensingService" per recuperare le informazioni della compagnia
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
@@ -31,8 +36,8 @@ public class OrganizationServiceController {
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.POST)
-    public void saveOrganization(@RequestBody Organization org) {
-       orgService.saveOrg( org );
+    public JSONObject saveOrganization(@RequestBody Organization org) {
+       return orgService.saveOrg( org );
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)

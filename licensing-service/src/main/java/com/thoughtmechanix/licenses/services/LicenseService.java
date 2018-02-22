@@ -7,6 +7,7 @@ import com.thoughtmechanix.licenses.config.ServiceConfig;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.model.Organization;
 import com.thoughtmechanix.licenses.repository.LicenseRepository;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,7 +62,7 @@ public class LicenseService {
         Organization org = retrieveOrgInfo(organizationId, clientType);
 
         return license
-                .withOrganizationName( org.getName())
+                .withOrganizationName( org.getOrganizationName())
                 .withContactName( org.getContactName())
                 .withContactEmail( org.getContactEmail() )
                 .withContactPhone( org.getContactPhone() )
@@ -72,11 +73,14 @@ public class LicenseService {
         return licenseRepository.findByOrganizationId( organizationId );
     }
 
-    public void saveLicense(License license){
-        license.withId( UUID.randomUUID().toString());
-
+    public JSONObject saveLicense(License license){
+        String licenseId = UUID.randomUUID().toString();
+        license.withId(licenseId);
         licenseRepository.save(license);
 
+        JSONObject obj=new JSONObject();
+        obj.put("licenseId",licenseId);
+        return obj;
     }
 
     public void updateLicense(License license){
