@@ -9,6 +9,13 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class OrganizationRestTemplateClient {
+
+    /*
+        Il RestTemplate bean Ribbon-aware definito in Application.java (con tanto di annotazione @LoadBalanced) permette di
+        avere un client che fa uso di una classe RestTemplate migliorata in grado di:
+        - Utilizzare l'Eureka service ID in fase di costruzione dell'url da utilizzare poi nella richiesta GET (nella chiamata di RestTemplate.excahnge())
+        - Effettivo utilizzo del client-side load balancing offerto da Ribbon
+     */
     @Autowired
     RestTemplate restTemplate;
 

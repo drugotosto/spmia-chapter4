@@ -41,6 +41,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+    <!--Istruzione per includere il logger Lo4j-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j</artifactId>
+      <version>1.3.7.RELEASE</version>
+    </dependency>
 
     <!-- Includes the Eureka libraries so that the service can register/interact with Eureka -->
     <dependency>
@@ -78,6 +84,20 @@
       <artifactId>spring-security-rsa</artifactId>
     </dependency>
 
+    <!-- Serve per garantire la resilience (circuit breaker, fallback, bulkhead) -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-hystrix</artifactId>
+    </dependency>
+
+    <!--In linea teorica questa seconda dependency dovrebbe essere superflua...-->
+    <dependency>
+      <groupId>com.netflix.hystrix</groupId>
+      <artifactId>hystrix-javanica</artifactId>
+      <version>1.5.9</version>
+    </dependency>
+
+    <!--Libreria che mi serve per creare un oggetto JSON da restituire al client-->
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>

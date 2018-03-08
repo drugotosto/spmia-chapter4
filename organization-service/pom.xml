@@ -75,11 +75,13 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-rsa</artifactId>
-  </dependency>
-      <dependency>
-          <groupId>com.googlecode.json-simple</groupId>
-          <artifactId>json-simple</artifactId>
-      </dependency>
+    </dependency>
+
+    <!--Libreria che mi serve per creare un oggetto JSON da restituire al client-->
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+    </dependency>
   </dependencies>
 
   <properties>

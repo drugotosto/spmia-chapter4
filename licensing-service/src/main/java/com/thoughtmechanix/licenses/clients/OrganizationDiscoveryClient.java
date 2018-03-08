@@ -15,7 +15,9 @@ import java.util.List;
 @Component
 public class OrganizationDiscoveryClient {
 
-    // Tale oggetto permete di interagire con le Ribbon libraries
+    /* Tale oggetto sarà iniettato automaticamente all'interno della classe (grazie all'utilizzo dell'anotazione @EnableDiscoveryClient presente nella classe Application.java)
+       e permete di interagire con le Ribbon libraries per ottenere una lista di tutte le istanze di un certo microservizio
+    */
     @Autowired
     private DiscoveryClient discoveryClient;
 
@@ -35,7 +37,7 @@ public class OrganizationDiscoveryClient {
         System.out.println("!!!! SERVICE URI:  " + serviceUri);
 
         /*
-            Viene Fatta una semplice chiamata REST all'end-point recuperato prima tramite la classe RestTemplate
+            Tramite la classe RestTemplate viene Fatta una semplice chiamata REST all'end-point della prima istanza del microservizio recuperato precendentemente
          */
         ResponseEntity< Organization > restExchange =
                 restTemplate.exchange(serviceUri, HttpMethod.GET, null, Organization.class, organizationId);

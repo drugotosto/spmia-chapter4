@@ -24,7 +24,7 @@ public class OrganizationServiceController {
         return orgService.getAllOrgs();
     }
 
-    // Endpoint che verrà richimato dal microservizio "licensingService" per recuperare le informazioni della compagnia
+    // Endpoint che verrà richimato dal microservizio "licensingService" per recuperare le informazioni della compagnia richiesta
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
     public Organization getOrganization( @PathVariable("organizationId") String organizationId) {
         return orgService.getOrg(organizationId);
@@ -35,6 +35,9 @@ public class OrganizationServiceController {
         orgService.updateOrg( org );
     }
 
+    /*
+        Ritorno un JSON che contiene l'ID dell'organizzaziine appena creata
+     */
     @RequestMapping(value="/{organizationId}",method = RequestMethod.POST)
     public JSONObject saveOrganization(@RequestBody Organization org) {
        return orgService.saveOrg( org );

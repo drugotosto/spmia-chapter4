@@ -27,7 +27,7 @@
     </dependencies>
   </dependencyManagement>
 
-  <!-- Tells your maven build to include the Eureka libraries  (which will include Ribbon) -->
+  <!-- Tells your maven build to include the Eureka libraries  (which will include Ribbon libraries) -->
   <dependencies>
     <dependency>
       <groupId>org.springframework.cloud</groupId>

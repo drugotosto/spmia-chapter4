@@ -3,7 +3,11 @@ package com.thoughtmechanix.licenses.controllers;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.services.LicenseService;
 import com.thoughtmechanix.licenses.config.ServiceConfig;
+import com.thoughtmechanix.licenses.utils.UserContextHolder;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -14,21 +18,27 @@ import java.util.List;
 @RequestMapping(value="v1/organizations/{organizationId}/licenses")
 @CrossOrigin
 public class LicenseServiceController {
+
+    private static final Logger logger = Logger.getLogger(LicenseServiceController.class);
+
     @Autowired
     private LicenseService licenseService;
 
     @Autowired
     private ServiceConfig serviceConfig;
 
+    // Le richieste a questo endpoint utilizzano Hystrix
     @RequestMapping(value="/",method = RequestMethod.GET)
     public List<License> getLicenses( @PathVariable("organizationId") String organizationId) {
 
         return licenseService.getLicensesByOrg(organizationId);
     }
 
+    // Le richieste a questo endpoint utilizzano Hystrix
     @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
-    public License getLicenses( @PathVariable("organizationId") String organizationId,
-                                @PathVariable("licenseId") String licenseId) {
+    public License getLicenses( @PathVariable("organizationId") String organizationId, @PathVariable("licenseId") String licenseId) {
+
+        logger.info(String.format("LicenseServiceController Correlation id: %s", UserContextHolder.getContext().getCorrelationId()));
 
         return licenseService.getLicense(organizationId, licenseId, "");
     }
@@ -38,6 +48,9 @@ public class LicenseServiceController {
         licenseService.updateLicense(license);
     }
 
+    /*
+    Ritorno un JSON che contiene l'ID della licenza appena creata
+     */
     @RequestMapping(value="/",method = RequestMethod.POST)
     public JSONObject saveLicenses(@RequestBody License license) {
         return licenseService.saveLicense(license);
@@ -49,6 +62,7 @@ public class LicenseServiceController {
          licenseService.deleteLicense(license);
     }
 
+    // Le richieste a questo endpoint utilizzano Hystrix
     @RequestMapping(value="/{licenseId}/{clientType}",method = RequestMethod.GET)
     public License getLicensesWithClient( @PathVariable("organizationId") String organizationId,
                                           @PathVariable("licenseId") String licenseId,

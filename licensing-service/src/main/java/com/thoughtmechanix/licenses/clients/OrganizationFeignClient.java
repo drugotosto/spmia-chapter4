@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// Identifica a quale application ID (microservizio) ci si riferisce e verso il quale si andranno a fare le chiamate REST
+// Identifica a quale application ID (microservizio) ci si riferisce e verso il quale si andranno a fare le chiamate REST (sarà presente quindi una interfaccia per ogni microservizio che occorre richiamare)
 @FeignClient("organizationservice")
 public interface OrganizationFeignClient {
 

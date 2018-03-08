@@ -2,6 +2,7 @@ package com.thoughtmechanix.licenses;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -11,10 +12,12 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
-// Tale annotazione permette di utilizzare il DiscoveryClient e le Ribbon libraries
+// Tale annotazione permette di usare il cliebt "DiscoveryClient" e le Ribbon libraries
 @EnableDiscoveryClient
-// Tale annotazione serve per abilitare l'utilizzo dei FeignClient e relativa annotazione da utilizzare sopra alle interfacce
+// Tale annotazione serve per abilitare l'utilizzo dei "FeignClient" e relativa annotazione (@FeignClient) da utilizzare sopra alle interfacce
 @EnableFeignClients
+// Tale annotazione dichiara che il servizio utilizzerà "Hystrix"
+@EnableCircuitBreaker
 public class Application {
 
     /*
