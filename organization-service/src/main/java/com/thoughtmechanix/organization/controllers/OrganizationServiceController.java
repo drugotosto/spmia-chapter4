@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="v1/organizations")
+// Di fondamentale importanza per imlementare CORS e permettere ad un client di consumare REST API presenti in un dominio differente
 @CrossOrigin()
 public class OrganizationServiceController {
     @Autowired

@@ -59,7 +59,7 @@ public class LicenseService {
                     @HystrixProperty(name = "coreSize",value="30"),
                     //Settaggio della grandezza massima della coda utilizzata per contenere le richieste in arrivo (il valore di -1 fa si che non vengano concessi più richieste in entrata rispetto al numero di threads disponibili)
                     @HystrixProperty(name="maxQueueSize", value="10")},
-            // Le properties che seguono servono per settare il comportamento di Hystrix nel momento in cui si decide di eseguire il tripping del circuit e relativo fail-fast
+            // Le properties che seguono servono per eseguire il settaggio "fine-tune" di Hystrix "Circuit Breaker" nel momento in cui si decide di eseguire il tripping del circuit implementando il "fail-fast"
             commandProperties = {
                     // Numero di volte necessarie all'interno della finestra utilizzata da Hystrix prima questo consideri la possibilità di eseguire il trip del circuito
                     @HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value="10"),
@@ -97,6 +97,7 @@ public class LicenseService {
     }
 
     public License getLicense(String organizationId,String licenseId, String clientType) {
+
         logger.info(String.format("LicenseService.getLicensesByOrg  Correlation id: %s", UserContextHolder.getContext().getCorrelationId()));
 
         License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
@@ -115,8 +116,7 @@ public class LicenseService {
     /*
         Implementazione del CIRCUT BREAKER con FALLBACK patterns tramite Hystrix nel momento in cui viene fatta una chiamata ad una risorsa esterna (nella fattispecie ad un DB remoto)
         Attraverso tale annotazione ogni chiamata al metodo sarà wrappata con l'Hystrix circuit breaker.
-        Se la chiamata impiega troppo tempo per essere completata allora questa verrà terminata lanciando l'eccezzione "HystrixRuntimeException"
-        restituendo un messaggio di errore al client.
+        Se la chiamata impiega troppo tempo per essere in grado di portarla a termine verrà eseguito il metodo alternativo "buildFallbackLicenseList"
      */
     @HystrixCommand(
             // Viene definito il fallback metodo da utilizzare per implemetare il FALLBACK PROCESSING nel momento in cui la chiamata al servizio fallisce o è andata in timeout
@@ -124,12 +124,14 @@ public class LicenseService {
             // Vengono definite delle properties personalizzate da utilizzare per customizzare Hystrix
             commandProperties = {
             // Viene stabilito il tempo di timeout da utilizzare prima che una chiamata effetuata da Hystrix venga interrotta
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "2000"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000"),
     })
-
     public List<License> getLicensesByOrg(String organizationId){
         // Chiamata che una 1 su 3 (distribuzione uniforme) "addormenta" per 5 secondi la chiamata mimando un rallentamento
-        randomlyRunLong();
+//        randomlyRunLong();
+
+        logger.info(String.format("LicenseService.getLicensesByOrg  Correlation id: %s", UserContextHolder.getContext().getCorrelationId()));
+
         return licenseRepository.findByOrganizationId( organizationId );
     }
 

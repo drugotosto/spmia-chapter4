@@ -6,8 +6,7 @@ spring:
   application:
     name: licensingservice
   profiles:
-    active:
-      default
+    active: default
   cloud:
     config:
       enabled: true

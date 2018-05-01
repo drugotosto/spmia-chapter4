@@ -12,9 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 /*
-* Classe che serve per configurare Spring Cloud in maniera tale che possa usare la
-* custom  Hystrix Currency Strategy che è stata definita (ThreadLocalAwareStrategy)
-* */
+    Questa classe come tutte quelle presenti all'interno del pacchetto 'hystrix' vengono utilizzare per risolvere
+    il problema di propagazione delle informazioni di contesto tra il thread padre relativo alla richiesta HTTP
+    e il thread pool gestito da Hystrix
+    Questa classe nello specifico andrà a configurare Spring Cloud in maniera tale che possa usare la custom  Hystrix
+    Currency Strategy che è stata definita (ThreadLocalAwareStrategy)
+*/
 @Configuration
 public class ThreadLocalConfiguration {
 

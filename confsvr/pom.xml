@@ -49,7 +49,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>com.thoughtmechanix.confsvr.ConfigServerApplication</start-class>
     <java.version>1.8</java.version>
-    <docker.image.name>ferrero/tmx-confsvr</docker.image.name>
+    <docker.image.name>drugotosto84/tmx-confsvr</docker.image.name>
     <docker.image.tag>chapter4</docker.image.tag>
   </properties>
 

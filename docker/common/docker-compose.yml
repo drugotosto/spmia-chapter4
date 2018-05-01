@@ -1,27 +1,30 @@
 version: '2'
 services:
+
   eurekaserver:
-     image: ferrero/tmx-eurekasvr:chapter4
+     image: drugotosto84/tmx-eurekasvr:chapter4
      ports:
        - "8761:8761"
+
   configserver:
-      image: ferrero/tmx-confsvr:chapter4
+      image: drugotosto84/tmx-confsvr:chapter4
       ports:
          - "8888:8888"
       environment:
          EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
          EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY:       "IMSYMMETRIC"
-  # configserver2:
-  #     image: ferrero/tmx-confsvr:chapter4
+    # configserver2:
+  #     image: drugotosto84/tmx-confsvr:chapter4
   #     ports:
   #        - "8889:8889"
   #     links:
   #         - "eurekaserver:eurekaserver"
   #     environment:
   #       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
-  #       EUREKASERVER_PORT:8761
+  #       EUREKASERVER_PORT: "8761"
   #       ENCRYPT_KEY:       "IMSYMMETRIC"
+
   database:
       image: postgres:9.5
       ports:
@@ -30,8 +33,9 @@ services:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=p0stgr@s
         - POSTGRES_DB=eagle_eye_local
+
   licensingservice:
-      image: ferrero/tmx-licensing-service:chapter4
+      image: drugotosto84/tmx-licensing-service:chapter4
       ports:
         - "8080:8080"
       environment:
@@ -43,8 +47,9 @@ services:
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"
         ENCRYPT_KEY:       "IMSYMMETRIC"
+
   organizationservice:
-      image: ferrero/tmx-organization-service:chapter4
+      image: drugotosto84/tmx-organization-service:chapter4
       ports:
         - "8085:8085"
       environment:
@@ -56,16 +61,30 @@ services:
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"
         ENCRYPT_KEY:       "IMSYMMETRIC"
-  organizationservice2:
-      image: ferrero/tmx-organization-service:chapter4
+#  organizationservice2:
+#      image: drugotosto84/tmx-organization-service:chapter4
+#      ports:
+#        - "8086:8086"
+#      environment:
+#        PROFILE: "default"
+#        SERVER_PORT: "8085"
+#        CONFIGSERVER_URI: "http://configserver:8888"
+#        EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+#        EUREKASERVER_PORT:   "8761"
+#        CONFIGSERVER_PORT:   "8888"
+#        DATABASESERVER_PORT: "5432"
+#        ENCRYPT_KEY:       "IMSYMMETRIC"
+
+  zuulservice:
+      image: drugotosto84/tmx-zuulsvr:chapter4
       ports:
-        - "8086:8086"
+        - "5555:5555"
       environment:
         PROFILE: "default"
-        SERVER_PORT: "8085"
+        SERVER_PORT: "5555"
         CONFIGSERVER_URI: "http://configserver:8888"
         EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
-        EUREKASERVER_PORT:   "8761"
-        CONFIGSERVER_PORT:   "8888"
-        DATABASESERVER_PORT: "5432"
-        ENCRYPT_KEY:       "IMSYMMETRIC"
+        EUREKASERVER_PORT:        "8761"
+        DATABASESERVER_PORT:      "5432"
+        CONFIGSERVER_PORT:        "8888"
+#        ORGSERVERNEW_PORT:        "8087"

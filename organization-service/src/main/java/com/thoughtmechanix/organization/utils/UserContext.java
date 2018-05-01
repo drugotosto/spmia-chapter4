@@ -1,4 +1,4 @@
-package com.thoughtmechanix.licenses.utils;
+package com.thoughtmechanix.organization.utils;
 
 import org.springframework.stereotype.Component;
 

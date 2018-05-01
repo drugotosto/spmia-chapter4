@@ -1,0 +1,33 @@
+server:
+  port: 5555
+
+#Setting logging levels
+logging:
+    level:
+      com.netflix: WARN
+      org.springframework.web: WARN
+      com.thoughtmechanix: DEBUG
+
+# Configurazione necessaria per fare in modo che Zuul riesca a parlare con Eureka e quindi sfruttare sia il service discovey che le Ribbon libraries
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+
+# Oltre a basarsi solamente sull'Eureka service ID tramite la seguente configurazione è possibile definire una o più custom routes da utizzare per uno o più specifici microservizi.
+# In particolare avremo che tutte le chiamate HTTP saranno mappate in automatico verso i relativi Eureka Service tranne
+# che quelle formate da ".../api/organization/..." che invece verranno mappate verso il servizio "organizationservice"
+
+# E' uso comune differenziare le chiamate verso le API tramite utilizzo di apposito prefix "/api" da quelle che invece riguardano i contenuti
+zuul:
+  prefix: "/api"
+  # L'utilizzo di questo attributo esclude l'ulteriore mapping che in automatico veniva eseguito da Zuul: 'organizationservice/**' : 'organizationservice'.
+  # Se fosse stato utilizzato il valore '*' allora non verrà utilizzato nemmeno un automated mapping Eureka service IDs
+  ignored-services: "organizationservice"
+  routes:
+    organizationservice: "/organization/**"

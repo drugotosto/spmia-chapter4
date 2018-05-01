@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="v1/organizations/{organizationId}/licenses")
+// Tale annotazione è necessaria per imlementare CORS e permettere così ad un client di consumare REST API presenti in un dominio differente rispetto a quello di origine
 @CrossOrigin
 public class LicenseServiceController {
 
@@ -31,13 +32,17 @@ public class LicenseServiceController {
     @RequestMapping(value="/",method = RequestMethod.GET)
     public List<License> getLicenses( @PathVariable("organizationId") String organizationId) {
 
+        logger.info(String.format("Correlation id recuperato dall'HEADER: %s",UserContextHolder.getContext().getCorrelationId()));
+
         return licenseService.getLicensesByOrg(organizationId);
     }
 
-    // Le richieste a questo endpoint utilizzano Hystrix
+    /*
+        Le richieste a questo endpoint utilizzano Hystrix
+        Di default le richieste utilizzano il "RestTemplateClient" con Ribbon-Aware
+     */
     @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
     public License getLicenses( @PathVariable("organizationId") String organizationId, @PathVariable("licenseId") String licenseId) {
-
         logger.info(String.format("LicenseServiceController Correlation id: %s", UserContextHolder.getContext().getCorrelationId()));
 
         return licenseService.getLicense(organizationId, licenseId, "");

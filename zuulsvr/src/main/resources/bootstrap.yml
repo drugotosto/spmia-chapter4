@@ -1,6 +1,6 @@
 spring:
   application:
-    name: organizationservice
+    name: zuulservice
   profiles:
     active: default
   cloud:
