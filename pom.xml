@@ -23,18 +23,5 @@
     <module>zuulsvr</module>
   </modules>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>com.spotify</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <version>0.4.13</version>
-        <configuration>
-        <baseImage>java</baseImage>
-        <imageName>example</imageName>
-        <dockerHost>https://localhost:2376</dockerHost>
-        <dockerCertPath>/Users/drugo/.docker/machine/machines/default</dockerCertPath>
-      </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>
