@@ -3,11 +3,13 @@ services:
 
   eurekaserver:
      image: drugotosto84/tmx-eurekasvr:chapter4
+     container_name: eurekaserver
      ports:
        - "8761:8761"
 
   configserver:
       image: drugotosto84/tmx-confsvr:chapter4
+      container_name: configserver
       ports:
          - "8888:8888"
       environment:
@@ -27,6 +29,7 @@ services:
 
   database:
       image: postgres:9.5
+      container_name: database
       ports:
       - "5432:5432"
       environment:
@@ -36,6 +39,7 @@ services:
 
   licensingservice:
       image: drugotosto84/tmx-licensing-service:chapter4
+      container_name: licensingservice
       ports:
         - "8080:8080"
       environment:
@@ -50,6 +54,7 @@ services:
 
   organizationservice:
       image: drugotosto84/tmx-organization-service:chapter4
+      container_name: organizationservice
       ports:
         - "8085:8085"
       environment:
@@ -77,6 +82,7 @@ services:
 
   zuulservice:
       image: drugotosto84/tmx-zuulsvr:chapter4
+      container_name: zuulservice
       ports:
         - "5555:5555"
       environment:
