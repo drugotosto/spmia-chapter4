@@ -86,8 +86,8 @@
              <configuration>
                  <imageName>${docker.image.name}:${docker.image.tag}</imageName>
                  <dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
-                 <dockerHost>https://localhost:2376</dockerHost>
-                 <dockerCertPath>/Users/drugo/.docker/machine/machines/default</dockerCertPath>
+                 <!--<dockerHost>https://localhost:2376</dockerHost>-->
+                 <!--<dockerCertPath>/Users/drugo/.docker/machine/machines/default</dockerCertPath>-->
                  <resources>
                      <resource>
                          <targetPath>/</targetPath>
