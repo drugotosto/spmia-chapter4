@@ -16,9 +16,9 @@ branches:
   only:
   - master
 before_install:
-- export BUILD_NAME=chapter10-$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
+- export BUILD_NAME=$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - export DOCKER_USERNAME="drugotosto84"
-- export DOCKER_PASSWORD="Juventus84"
+- export DOCKER_PASSWORD="UfhA2ybn"
 script:
 - mvn clean package docker:build
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
