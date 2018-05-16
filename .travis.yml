@@ -22,7 +22,11 @@ before_install:
 script:
 - mvn clean package docker:build
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- docker tag drugotosto84/tmx-licensing-service:LocalBuild-Latest drugotosto84/tmx-licensing-service:$BUILD_NAME
 - docker push drugotosto84/tmx-licensing-service:$BUILD_NAME
+- docker tag drugotosto84/tmx-organization-service:LocalBuild-Latest drugotosto84/tmx-organization-service:$BUILD_NAME
 - docker push drugotosto84/tmx-organization-service:$BUILD_NAME
+- docker tag drugotosto84/tmx-confsvr:LocalBuild-Latest drugotosto84/tmx-confsvr:$BUILD_NAME
 - docker push drugotosto84/tmx-confsvr:$BUILD_NAME
+- docker tag drugotosto84/tmx-eurekasvr:LocalBuild-Latest drugotosto84/tmx-eurekasvr:$BUILD_NAME
 - docker push drugotosto84/tmx-eurekasvr:$BUILD_NAME
