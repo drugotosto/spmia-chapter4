@@ -61,7 +61,7 @@
     <start-class>com.thoughtmechanix.zuulsvr.ZuulServerApplication</start-class>
     <java.version>1.8</java.version>
     <docker.image.name>drugotosto84/tmx-zuulsvr</docker.image.name>
-    <docker.image.tag>${env.BUILD_NAME}</docker.image.tag>
+    <docker.image.tag>LocalBuild-Latest</docker.image.tag>
   </properties>
 
   <build>
