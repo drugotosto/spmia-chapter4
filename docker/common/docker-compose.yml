@@ -2,13 +2,13 @@ version: '2'
 services:
 
   eurekaserver:
-     image: drugotosto84/tmx-eurekasvr:chapter4
+     image: drugotosto84/tmx-eurekasvr:LocalBuild-Latest
      container_name: eurekaserver
      ports:
        - "8761:8761"
 
   configserver:
-      image: drugotosto84/tmx-confsvr:chapter4
+      image: drugotosto84/tmx-confsvr:LocalBuild-Latest
       container_name: configserver
       ports:
          - "8888:8888"
@@ -38,7 +38,7 @@ services:
         - POSTGRES_DB=eagle_eye_local
 
   licensingservice:
-      image: drugotosto84/tmx-licensing-service:chapter4
+      image: drugotosto84/tmx-licensing-service:LocalBuild-Latest
       container_name: licensingservice
       ports:
         - "8080:8080"
@@ -53,7 +53,7 @@ services:
         ENCRYPT_KEY:       "IMSYMMETRIC"
 
   organizationservice:
-      image: drugotosto84/tmx-organization-service:chapter4
+      image: drugotosto84/tmx-organization-service:LocalBuild-Latest
       container_name: organizationservice
       ports:
         - "8085:8085"
@@ -81,7 +81,7 @@ services:
 #        ENCRYPT_KEY:       "IMSYMMETRIC"
 
   zuulservice:
-      image: drugotosto84/tmx-zuulsvr:chapter4
+      image: drugotosto84/tmx-zuulsvr:LocalBuild-Latest
       container_name: zuulservice
       ports:
         - "5555:5555"
