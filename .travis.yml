@@ -16,12 +16,13 @@ branches:
   only:
   - master
 before_install:
+- export BUILD_NAME=chapter10-$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="Juventus84"
 script:
-- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - mvn clean package docker:build
-- docker push drugotosto/tmx-licensing-service:chapter4
-- docker push drugotosto/tmx-organization-service:chapter4
-- docker push drugotosto/tmx-confsvr:chapter4
-- docker push drugotosto/tmx-eurekasvr:chapter4
+- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- docker push drugotosto/tmx-licensing-service:$BUILD_NAME
+- docker push drugotosto/tmx-organization-service:$BUILD_NAME
+- docker push drugotosto/tmx-confsvr:$BUILD_NAME
+- docker push drugotosto/tmx-eurekasvr:$BUILD_NAME
