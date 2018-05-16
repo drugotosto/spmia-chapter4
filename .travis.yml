@@ -16,7 +16,7 @@ branches:
   only:
   - master
 before_install:
-- export BUILD_NAME=$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
+- export BUILD_NAME=(date -u "+%Y%m%d%H%M%S")
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="UfhA2ybn"
 script:
