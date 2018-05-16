@@ -34,3 +34,6 @@ script:
 - docker tag drugotosto84/tmx-eurekasvr:LocalBuild-Latest drugotosto84/tmx-eurekasvr:$BUILD_NAME
 - docker push drugotosto84/tmx-eurekasvr:$BUILD_NAME
 - docker push drugotosto84/tmx-eurekasvr:LocalBuild-Latest
+- docker tag drugotosto84/tmx-zuulsvr:LocalBuild-Latest drugotosto84/tmx-zuulsvr:$BUILD_NAME
+- docker push drugotosto84/tmx-zuulsvr:$BUILD_NAME
+- docker push drugotosto84/tmx-zuulsvr:LocalBuild-Latest
