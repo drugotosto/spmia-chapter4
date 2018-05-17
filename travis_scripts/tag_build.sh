@@ -4,7 +4,7 @@ echo "Vado sia a TAGGARE che a creare una nuova GITHUB RELEASE del source code r
 #echo "Successivemante faccio la push di tale tag anche in remoto"
 #git push https://github.com/drugotosto/spmia-chapter4 $BUILD_NAME
 
-export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases?access_token=$TOKEN"
+export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases?access_token=$GITHUB_TOKEN"
 
 body="{
   \"tag_name\": \"$BUILD_NAME\",
