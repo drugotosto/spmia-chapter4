@@ -17,5 +17,5 @@ body="{
 }"
 
 # Prima vado ad autenticarmi utilizzando l'access Token
-curl -u -u drugotosto:$GITHUB_TOKEN $USER_URL
+curl -u drugotosto:$GITHUB_TOKEN $USER_URL
 curl -k -X POST -H "Content-Type: application/json" -d "$body" $TARGET_URL
