@@ -4,7 +4,7 @@ echo "Vado sia a TAGGARE che a creare una nuova GITHUB RELEASE del source code r
 echo"Prima taggo in locale il commit appena eseguito"
 git tag -a $BUILD_NAME -m "creazione nuovo tag"
 echo "Successivemante faccio la push di tale tag anche in remoto"
-git push github $BUILD_NAME
+git push https://github.com/drugotosto/spmia-chapter4 $BUILD_NAME
 
 echo "A questo punto vado a creare una nuova GitHub release"
 export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases?access_token=$GITHUB_TOKEN"
