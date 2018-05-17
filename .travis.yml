@@ -16,12 +16,13 @@ branches:
   only:
   - master
 before_install:
-# In realtà le variabili d'ambiente "DOCKER_USERNAME" e "DOCKER_PASSWORD" dovrebbero essere cifrate e non passate in chiaro
 - export BUILD_NAME=$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="UfhA2ybn"
-- export GITHUB_TOKEN="e45b48c7e0aa075ca77eb3710eaad306577590ae"
 script:
 - sh travis_scripts/tag_build.sh
 - sh travis_scripts/build_services.sh
 - sh travis_scripts/deploy_to_docker_hub.sh
+env:
+  global:
+    secure: nHk+XCPlABC2I4ajgGmqQNPAgsl3E93RZyRPNYuHAFHUOAUfojhgBItrQXRqKKKFJq11ka5vDbfRa3k9Dz76u3xPnCJwlYlGkTT67WWukThSFrHNMiUYFvEhcddqsVruD+s7VQ3sjtfhQdTfLtCStB4qILw1fy6kIDCpkuueDiNROFWr+5TaeF2q6EYXlnyxapuAKShvxAvPCSDMfSGpA4H9Y/TDZ8orcRhN4OQfjet64qdd+uZ/KLMOkwlXH+n8eZSkpGl9DiQIJIQwabxA/vpgHPhGIri89qj4pV/FP9gmnRuMkXWOLFWA7U7I5bdjDCNj4ZH++V+1S5ea2m8Wkrq7BLkftAaepy5cPOkEEFlo5a/ktNhQkIyST8KH2Tj6Dxi3xegE8zg70qeI5ZNizeRP3uMTRKP+J6K3nTUhl+RbpbhWTQ8D/9R8N/4b/VRZiAkmwap6k5TyoMDHtoURZ7TClRRH3RfP6kK5/QAmngL02Kc4VjGFoygx352eFtccBf21AzsZf0+hsukiUVavViGc3M+l43JmiY/pCdStZZna28cx0wVJGX9ImqAPFGVPXTn++IzMkhoZzgDUBmexLn6EyCOEpJVeBNHoWey6d8qubBd8XXxjn9caiD0qb8/99FVPq78WDnjpjkLZFz2v+I2R3lk1aoipMevb8jXl6qQ=
