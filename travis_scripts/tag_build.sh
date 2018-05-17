@@ -15,4 +15,4 @@ body="{
   \"prerelease\": true
 }"
 
-curl -k -X POST -H "Content-Type: application/json" -d $body $TARGET_URL
+curl -X POST -H "Content-Type: application/json" -d "$body" $TARGET_URL
