@@ -4,7 +4,7 @@ echo "Vado sia a TAGGARE che a creare una nuova GITHUB RELEASE del source code r
 #echo "Successivemante faccio la push di tale tag anche in remoto"
 #git push https://github.com/drugotosto/spmia-chapter4 $BUILD_NAME
 
-export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases"
+export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases?client_id=68c37dc0d2a28b800dba&client_secret=44bef91315dd4c894530b7657ceb78fb52a57c7a"
 
 body="{
   \"tag_name\": \"$BUILD_NAME\",
@@ -15,4 +15,4 @@ body="{
   \"prerelease\": true
 }"
 
-curl -k -X POST -H "Content-Type: application/json" -H "Authorization: token 44bef91315dd4c894530b7657ceb78fb52a57c7a" -d "$body" $TARGET_URL
+curl -k -X POST -H "Content-Type: application/json" -d "$body" $TARGET_URL
