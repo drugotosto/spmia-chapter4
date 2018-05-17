@@ -23,6 +23,8 @@ script:
 - sh travis_scripts/tag_build.sh
 - sh travis_scripts/build_services.sh
 - sh travis_scripts/deploy_to_docker_hub.sh
+
 env:
   global:
+    # Rappresenta la variabile d'ambiente GITHUB_TOKEN cifrata utilizzata per effettuare la chiamata REST alle API di GitHub per creare una nuova Release (tag_build.sh)
     secure: eFuDdF2R7nEFARQ0zLFantAdSEaC2EidZUdXwMpLzfSCsZuD4nxYhXW+XFjNW65aVJT9oANfSGYuoOMKiJwMk8ovZtQbBBvKWoD3bGtsOxzbTGuxv8XBdmXs2Q0DWRM82LSoh8fYcVEEcxYXAgvq6DB1ANVH3I68S9t2KXIcyd/1DqEvYA8OmTOumZnViQOOiNEJs1sEZ/cwcSULr1l7PR94QdO9R+WClPvgp1snQThlQh9hAcxQaw2rSCk3H8nT1bwt5G2FJp1dJG9SoFOCnWO7X/BBuTaIVdrax/+F4FDgX44NtfZcNlauLTzbQkbLc6WtTsIGcRPZhVgG7eGFxvEE4in55O3g56IqdtG/Cpxu//Yvu/13Oz9qQTcNNjiQo0Cx5Z0u0SKY3t/uPlHDLptimC7T5jhj4jAhGgsxiPC+cGTUhQDIq1IxfO3gfjKR1AwSadjIMsg4abYA4DTVVatSQRKarI3HXguc42htv9r0pKnmb7UrkkepKS6hN4zeyMYYRZ2mC47yVSKPlZK26mJmqFsSLsHI9v7nhIqP7KNPC6IO2JV/MUr6Hz2nVGQlSTDntV/wVj3G720FSmaUxl/X2XuPyC5s7JuCPEO7MoKizSXl0eBrpi1QizCotm1Fucur+CyADElIZbG0N9bW+PDT329WUQ33OX+fihyY7PA=
