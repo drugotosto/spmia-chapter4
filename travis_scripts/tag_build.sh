@@ -5,7 +5,6 @@ echo "Vado sia a TAGGARE che a creare una nuova GITHUB RELEASE del source code r
 #git push https://github.com/drugotosto/spmia-chapter4 $BUILD_NAME
 
 export TARGET_URL="https://api.github.com/repos/drugotosto/spmia-chapter4/releases"
-export USER_URL="https://api.github.com/user"
 
 body="{
   \"tag_name\": \"$BUILD_NAME\",
@@ -16,4 +15,4 @@ body="{
   \"prerelease\": true
 }"
 
-curl -k -X POST -H "Content-Type: application/json" -d "$body" -u drugotosto:$GITHUB_TOKEN $TARGET_URL
+curl -k -X POST -H "Content-Type: application/json" -d "$body" --user "drugotosto:$GITHUB_TOKEN" $TARGET_URL
