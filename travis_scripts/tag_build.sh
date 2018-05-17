@@ -16,6 +16,4 @@ body="{
   \"prerelease\": true
 }"
 
-# Prima vado ad autenticarmi utilizzando l'access Token
-curl -u drugotosto:$GITHUB_TOKEN $USER_URL
-curl -k -X POST -H "Content-Type: application/json" -d "$body" $TARGET_URL
+curl -k -X POST -H "Content-Type: application/json" -d "$body" -u drugotosto:$GITHUB_TOKEN $TARGET_URL
