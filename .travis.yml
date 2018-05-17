@@ -19,7 +19,7 @@ before_install:
 - export BUILD_NAME=$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="UfhA2ybn"
-- export GITHUB_TOKEN="e1aa85bb1b8a0e6262aff88ddd0115c564267066"
+- export TOKEN="681953a9c9c49856db3faff826bd0ba071eaef5b"
 script:
 - sh travis_scripts/tag_build.sh
 - sh travis_scripts/build_services.sh
