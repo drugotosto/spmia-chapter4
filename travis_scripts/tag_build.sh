@@ -15,4 +15,4 @@ body="{
   \"prerelease\": true
 }"
 
-curl -k -X POST -H "Content-Type: application/json" -H "Authorization: token a46e77e094814a5f6263dee88c028d40d04af4e1" -d "$body" $TARGET_URL
+curl -k -X POST -H "Content-Type: application/json" -H "Authorization: token 44bef91315dd4c894530b7657ceb78fb52a57c7a" -d "$body" $TARGET_URL
