@@ -19,10 +19,8 @@ before_install:
 - export BUILD_NAME=$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="UfhA2ybn"
+- export GITHUB_TOKEN="e1aa85bb1b8a0e6262aff88ddd0115c564267066"
 script:
 - sh travis_scripts/tag_build.sh
 - sh travis_scripts/build_services.sh
 - sh travis_scripts/deploy_to_docker_hub.sh
-env:
-  global:
-    secure: fhC+fRP3c1aelH4i4j5cUp/+ttn/gPO1PdFcjaQDkg60fGhwHIDmyeJcAPNP0mG9iJIg5xo4r7s6nr6XpcoRNB6ZUNxYDyDKaD2ONX/UibHcZFRcloqBE2GQuRZtm8rA8ijDAdf+4eZa6cBAyzlBXbIXQQ/8BkKAiwZ/qX3RIzh9UkVdcLL9NBZC3YmLewXfagUHjbEOaMuBJGIwIByDQ/I7yfqAq2MUQm9Uo54NYrQFuIFTeGrZfcxsi1zUS1LC6mqV5pRmxhDqCSpKBt7XIkKRbww9K6zv9jDT62K7Zj1PL+p1Trh7cnhoSlDJGBvP7sgGG3mAgt3ZZ9cjYuN/6OqhgHT1n7hxF446MO2MO+2+P+G7wP2wUZaFQg2zr36YB5T417+ZwzVHdv/k5gEyEg9CvTcg3NZg8OqFp4znKoTXw76mCiKWGftCQC8a4y5wzyfVKKcCA0E9ttu1LwP/sUtrwQ4JFdJei5nbS5yIfsnNv7PMVgU0RfKinFSF1UVdCf+7noMAUZ3MjKtHuiEHGUI6l4EuTtrw+PVsPhMGOOsyOBh/mIvTzmUg9gsNQS00LYr+g7dUEwbykVWzS9tOmnUFLkXJQNGgm9vatbZlj8/fa+l/tJ6NvY3fkOrxE3jpbw51w+Gb0Dw275ijsXgIgeYBQk2wyIJWU9KMwnkO7hs=
