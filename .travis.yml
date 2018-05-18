@@ -20,10 +20,15 @@ before_install:
 - export DOCKER_USERNAME="drugotosto84"
 - export DOCKER_PASSWORD="UfhA2ybn"
 script:
-- sh travis_scripts/tag_build.sh
+#- sh travis_scripts/tag_build.sh
 #- sh travis_scripts/build_services.sh
-#- sh travis_scripts/deploy_to_docker_hub.sh'
-env:
-  global:
-    # Rappresenta la variabile d'ambiente cifrata "GITHUB_TOKEN" utilizzata all'interno dello script (tag_build.sh) per creare la release su GitHub
-    secure: EXbg1jZBck5uqxJ0JBrO0V4F9Nb0kT64btPQpC0PbuwdjrIxrbdetcgnU1on5Kq+J22ZTPKBKaPOvL/T40P597vD+QCt0OAutObIlwp0QjcyaQK1nUnnRKy8Aqj6y2YWbHKFy/M+G5eU9Kqy+kan5ing/2UcyzBonUb3okAqPzs6S6nVcrYHQin50MCCpkgyxnaoKmtIx8k+3p3N3py9mZZThpgNhPy3IVcva7PIXZ1Om3pCDkVZUx9wn4x596ip4ouLRz7Hzs6skZB12BZhvnfVo63pmuuHoxq33QtyrffuceAvbaWALHE5N5Nb0oHV3ai1TWj1ex9lBmyxtlDeDR0b5jKUkBgHaGWDa7F85oflgO9mBI8uuNE63pA7dkh3zI8Zth9JJYfYReedwAldj0rLi8PfXlr+rq5+dwbpGkn1vJ8QmQRatfanbVvJXhb87HuvRwM6x00McL4BHe6dtHmZIOVgmp6r2op+Kwu1nV5f4XBWzBAnGSCrT9F2gvxRVBvQVv1bbYVp+toWDG+tI6UR6KxgPDP54p5RX+QlKCrQU5kRRqBZqMNTfdI2XgTBWgtQqEQCCQZRY32NqhRh4dWzjcqXSRBdAnmC+yCS9Kpx9Td039olhjymX2jh8w9OnCFxMWAaWiRN8q+OketwreLijwgUQMcb4v6ZHSIfnBw=
+#- sh travis_scripts/deploy_to_docker_hub.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: LHqZyI/0v46dl0b3LVJyYEYlbELVYLs6pSZnY0K9WuhlwlcoLunAkVogrLRhtMRaf4JybDhTmLgUggQVbm/4NYsEk//8keHwzMbNLyxQD4neMAn4D5KojG3HhF/uKaBFAgo7pzaBrp3dbi41gBqyjowoHyvLEA52V9MkG+7PJoQTchq/CN2/71OjKVP0ckr3znMd+Kg+KjczXz9ugECHLlatMp3JoN7yiTSJJ1IelPbSxJn8EBAtFJA3FiNS50C0oYUxMlI4mB8AGwB4Dnw9XgdSzwO/YHKFsWsntz0zkEp1ChCPzVsqqsjogG8C+WgWtmp6UzWmumwh8CB07ItUnXghVBFwaxIuU0ExHq5PIm8OW2axA52Pv66kmlBxc/gN5a1Uq0qGnBlTnNfzL7G/VHUzmlUcAkErXC/zlfdLYO7eItSE0aQMpbpnHdAr+1UWYVaordNAUcg8sdb8n1D8CnFE76qDJMUiOVaLejqrmayTXDX4Q778+0ccdLStqk++qLmHKhY7gOM+QGsd2UVwN/ZrBlTcz8fDYYX7ROOWP3eZVwl/t5tdCgyAwHbP/vhTG1X0glSGZHKoI6YJ7TAQXXPhnLe1B3p3aazCHUQqNiejOoFAgjwWb96MpUXI022E/CckiE3edFbohMSJBOxrOIGEK6hwPm3jxo4bV6/afAg=
+  file: ''
+  skip_cleanup: true
+  on:
+    repo: drugotosto/spmia-chapter4
+    tags: true
