@@ -46,9 +46,13 @@ services:
         PROFILE: "default"
         SERVER_PORT: "8080"
         CONFIGSERVER_URI: "http://configserver:8888"
+        CONFIGSERVER_PORT:   "8888"
         EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
         EUREKASERVER_PORT:   "8761"
-        CONFIGSERVER_PORT:   "8888"
+        KAFKASERVER_URI: "kafkaserver"
+        ZKSERVER_URI: "kafkaserver"
+        KAFKASERVER_PORT:    "2181"
+        ZUULSERVER_PORT:     "5555"
         DATABASESERVER_PORT: "5432"
         ENCRYPT_KEY:       "IMSYMMETRIC"
 
@@ -61,9 +65,13 @@ services:
         PROFILE: "default"
         SERVER_PORT: "8085"
         CONFIGSERVER_URI: "http://configserver:8888"
+        CONFIGSERVER_PORT:   "8888"
         EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
         EUREKASERVER_PORT:   "8761"
-        CONFIGSERVER_PORT:   "8888"
+        KAFKASERVER_URI: "kafkaserver"
+        ZKSERVER_URI: "kafkaserver"
+        KAFKASERVER_PORT:    "2181"
+        ZUULSERVER_PORT:     "5555"
         DATABASESERVER_PORT: "5432"
         ENCRYPT_KEY:       "IMSYMMETRIC"
 #  organizationservice2:
@@ -94,3 +102,10 @@ services:
         DATABASESERVER_PORT:      "5432"
         CONFIGSERVER_PORT:        "8888"
 #        ORGSERVERNEW_PORT:        "8087"
+
+  kafkaserver:
+    image: spotify/kafka
+    ports:
+      - 2181:2181
+      - 9092:9092
+

@@ -1,6 +1,8 @@
 package com.thoughtmechanix.licenses;
 
+import com.thoughtmechanix.licenses.events.models.OrganizationChangeModel;
 import com.thoughtmechanix.licenses.utils.UserContextInterceptor;
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -8,6 +10,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
@@ -21,7 +26,10 @@ import java.util.List;
 @EnableFeignClients
 // Tale annotazione dichiara che il servizio utilizzerà "Hystrix"
 @EnableCircuitBreaker
+@EnableBinding(Sink.class)
 public class Application {
+
+    private static final Logger logger = Logger.getLogger(Application.class);
 
     /*
         Tale annotazione (in abbinamento con il costruttore richiamato all'interno del metodo) serve per
@@ -51,7 +59,13 @@ public class Application {
         return template;
     }
 
+    @StreamListener(Sink.INPUT)
+    public void loggerSink(OrganizationChangeModel orgChange) {
+        logger.info(String.format("Ho ricevuto il messaggio/evento per l'Organizzazione id: %s", orgChange.getOrganizationId()));
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
   }
 }
+

@@ -7,4 +7,21 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          # Si mappa il canale 'source.output()' di Spring Cloud Stream con la message queue/topic 'OrgChangeTopic' presente sul message broker
+          destination:  orgChangeTopic
+          # Definisce la tipologia di messaggi che vengono spediti/inviati (JSON). Possibile utilizzare AVRO...
+          content-type: application/json
+      # Si definisce Kafka come message broker da utilizzare
+      kafka:
+        # Vengono forniti i network address in cui sono presenti Kafka e il Apache Zookeeper server utilizzato sempre da Kafka
+        binder:
+          zkNodes: localhost
+          brokers: localhost
+
+
         
